@@ -16,13 +16,21 @@ things you'll need:
 
 ## login flow
 
-title login flow
-
-user->site: username and phone
-phone->user: msg with unique url
-note right of phone: phone could also be email or any out-of-band communications channel
-user->phone: load unique url to confirm choice
-site->user: login complete
+![](http://g.gravizo.com/g?
+  @startuml;
+  ;
+  actor user;
+  participant phone;
+  participant site;
+  ;
+  user->site: username and phone;
+  phone->user: msg with unique url;
+  note right of phone: phone could also be email or any out-of-band communications channel;
+  user->phone: load unique url to confirm choice;
+  site->user: login complete;
+  ;
+  @enduml;
+)
 
 ## license
 by jden <jason@denizac.org> sometime in 2014, ISC license.
