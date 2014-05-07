@@ -1,0 +1,15 @@
+{
+  "name": "2f1a",
+  "version": "0.0.0",
+  "description": "2 factors 1 auth",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concat-stream": "^1.4.5",
+    "twilio": "^1.6.0"
+  }
+}

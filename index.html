@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+<body>
+<form action="/login" method="post" id="login">
+  <input id="username" name="username" placeholder="username" />
+  <input id="phone" name="phone" placeholder="phone" />
+  <input type="submit" value="login" />
+</form>
+
+<script>
+  document.getElementById('login').addEventListener('submit', function (e) {
+      e.preventDefault()
+
+      Array.prototype.slice.call(document.querySelectorAll('input')).forEach(function (el) {
+        el.disabled = true
+      })
+      var el = document.createElement('p')
+      el.textContent = 'logging in...'
+      document.getElementById('login').appendChild(el)
+
+
+      $.ajax({
+        url: '/login',
+        type: 'post',
+        processData: false,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          username: document.getElementById('username').value,
+          phone: document.getElementById('phone').value
+        })
+      })
+      .then(function (res) {
+        if (res && res.disposition === 'ok') {
+          document.body.innerHTML = 'logged in!'
+        }
+      }, function (err) {
+        if (err.status === 419) {
+          document.body.innerHTML = 'timeout logging in, reload to try again.'
+        } else {
+          document.body.innerHTML = 'something didnt quite work while we were trying to log in.'
+        }
+      })
+
+
+    })
+</script>
+
+<body></html>
